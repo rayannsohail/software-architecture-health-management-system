@@ -1,0 +1,22 @@
+==============================================
+            REFERRAL SUMMARY REPORT           
+==============================================
+Referral ID: R014
+Patient: Rayann Anderson (NHS: 0123456789)
+Referring Clinician: Dr. Helen Roberts GP (Dr. Helen - General Practice)
+Referred To: Dr. Richard Evans Consultant (Dr. Richard - Cardiology)
+Referring Facility: Birmingham Central GP Surgery (GP Surgery)
+Referred To Facility: Sutton Coldfield Medical Centre (GP Surgery)
+Referral Date: 24/12/2025
+Urgency Level: 2-week wait
+Reason for Referral: he is about to die
+Requested Service: injection
+Status: Accepted
+Clinical Summary:
+kill him pls
+Notes:
+kill him in the most painful way
+Created Date: 24/12/2025
+Last Updated: 24/12/2025
+----------------------------------------------
+
