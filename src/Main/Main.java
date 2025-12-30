@@ -69,8 +69,7 @@ public class Main {
                 // MAIN FRAME
                 // ================================
                 MainFrame frame = new MainFrame(pc, plc, cc, ac, prc, rc);
-                frame.setTitle("Health Management System");
-                frame.setSize(1200, 800);
+                frame.setSize(1000, 600); // Larger size for professional role selection screen
                 frame.setLocationRelativeTo(null);
                 
                 // ✅ Modern UI tweaks with light green theme
