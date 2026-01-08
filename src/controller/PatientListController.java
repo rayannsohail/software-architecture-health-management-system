@@ -41,7 +41,7 @@ public class PatientListController {
             Patient p = repository.findById(id);
             if (p != null) {
                 repository.remove(p);
-                repository.saveAll(); // Persist changes to CSV
+                repository.saveAll();
                 refreshView();
                 javax.swing.JOptionPane.showMessageDialog(view, "Patient deleted successfully!");
             }
@@ -91,7 +91,7 @@ public class PatientListController {
         JTextField txtRegistrationDate = new JTextField(p.getRegistrationDate());
         JTextField txtGpSurgeryId = new JTextField(p.getGpSurgeryId());
 
-        // Add components
+        // components
         gbc.gridx = 0; gbc.gridy = 0; panel.add(new JLabel("First Name:"), gbc);
         gbc.gridx = 1; panel.add(txtFirstName, gbc);
 

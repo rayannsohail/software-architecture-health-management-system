@@ -39,18 +39,14 @@ public class PatientView extends JPanel {
         setLayout(new BorderLayout(20, 20));
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
 
-        // ============================
-        // TITLE
-        // ============================
+
         title = new JLabel("Register New Patient");
         title.setFont(new Font("Segoe UI", Font.BOLD, 22));
-        title.setForeground(new Color(76, 175, 80)); // Light green
+        title.setForeground(new Color(76, 175, 80)); 
         title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title, BorderLayout.NORTH);
 
-        // ============================
-        // FORM
-        // ============================
+
         JPanel form = new JPanel(new GridBagLayout());
         form.setOpaque(true);
         form.setBackground(new Color(250, 250, 250));
@@ -143,9 +139,7 @@ public class PatientView extends JPanel {
 
         add(form, BorderLayout.CENTER);
 
-        // ============================
-        // BUTTON
-        // ============================
+
         btnAdd = new JButton("Register Patient");
         btnAdd.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnAdd.addActionListener(e -> onAdd());

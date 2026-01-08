@@ -80,22 +80,22 @@ public class MainFrame extends JFrame {
         rolesPanel.setBackground(new Color(240, 248, 240));
         rolesPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 40, 40));
 
-        // Patient Role Card
+
         JPanel patientCard = createRoleCard("Patient", "Access your personal health records and appointments",
                                           new Color(76, 175, 80), UserRole.PATIENT);
         rolesPanel.add(patientCard);
 
-        // Clinician Role Card
+
         JPanel clinicianCard = createRoleCard("Clinician", "Manage patients, appointments, referrals and prescriptions",
                                             new Color(33, 150, 243), UserRole.CLINICIAN);
         rolesPanel.add(clinicianCard);
 
-        // Administrator Role Card
+
         JPanel adminCard = createRoleCard("Administrator", "Oversee clinicians, appointments and referrals",
                                         new Color(156, 39, 176), UserRole.ADMINISTRATOR);
         rolesPanel.add(adminCard);
 
-        // Footer
+
         JPanel footerPanel = new JPanel();
         footerPanel.setBackground(new Color(240, 248, 240));
         footerPanel.setBorder(BorderFactory.createEmptyBorder(0, 40, 20, 40));
@@ -120,7 +120,7 @@ public class MainFrame extends JFrame {
         ));
         card.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Make card clickable
+
         card.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 showRoleInterface(role);
@@ -133,14 +133,14 @@ public class MainFrame extends JFrame {
             }
         });
 
-        // Title
+
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
         titleLabel.setForeground(accentColor);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 15, 0));
 
-        // Description
+
         JLabel descLabel = new JLabel("<html><center>" + description + "</center></html>");
         descLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
         descLabel.setForeground(new Color(97, 97, 97));
@@ -157,14 +157,14 @@ public class MainFrame extends JFrame {
 
         switch (role) {
             case PATIENT:
-                // Patient: Patients page and Appointments page
+
                 tabs.addTab("Patients", pc.getView());
                 ac.getView().setMode("patient");
                 tabs.addTab("Appointments", ac.getView());
                 break;
 
             case CLINICIAN:
-                // Clinician: All Patients page, Appointments page, Referrals page, and Prescriptions page
+                
                 tabs.addTab("All Patients", plc.getView());
                 ac.getView().setMode("clinician");
                 tabs.addTab("Appointments", ac.getView());
@@ -173,7 +173,7 @@ public class MainFrame extends JFrame {
                 break;
 
             case ADMINISTRATOR:
-                // Administrator: Clinicians page, Appointments page, and Referrals page
+                
                 tabs.addTab("Clinicians", cc.getView());
                 ac.getView().setMode("admin");
                 tabs.addTab("Appointments", ac.getView());
@@ -181,7 +181,7 @@ public class MainFrame extends JFrame {
                 break;
         }
 
-        // Add a back button to return to role selection
+
         JPanel tabPanel = new JPanel(new BorderLayout());
         JButton backButton = new JButton("← Back to Role Selection");
         backButton.setBackground(new Color(76, 175, 80));

@@ -18,24 +18,23 @@ public class ReferralRepository {
         try {
             for (String[] row : CsvUtils.readCsv(csvPath)) {
 
-                // Create Referral object with ALL 16 columns
                 Referral r = new Referral(
-                        row[0],  // referral_id
-                        row[1],  // patient_id
-                        row[2],  // referring_clinician
-                        row[3],  // referred_to_clinician
-                        row[4],  // referring_facility
-                        row[5],  // referred_to_facility
-                        row[6],  // referral_date
-                        row[7],  // urgency_level
-                        row[8],  // referral_reason
-                        row[9],  // clinical_summary
-                        row[10], // requested_service
-                        row[11], // status
-                        row[12], // appointment_id
-                        row[13], // notes
-                        row[14], // created_date
-                        row[15]  // last_updated
+                        row[0],  
+                        row[1],  
+                        row[2],  
+                        row[3],  
+                        row[4],  
+                        row[5],  
+                        row[6],  
+                        row[7],  
+                        row[8],  
+                        row[9],  
+                        row[10], 
+                        row[11], 
+                        row[12], 
+                        row[13], 
+                        row[14], 
+                        row[15]  
                 );
 
                 referrals.add(r);
@@ -52,9 +51,6 @@ public class ReferralRepository {
     }
 
 
-    /**
-     * Add referral and append to CSV (ALL 16 COLUMNS)
-     */
     public void addAndAppend(Referral r) {
         referrals.add(r);
 

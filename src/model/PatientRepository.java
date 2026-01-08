@@ -20,28 +20,25 @@ public class PatientRepository {
     return ids;
 }
 
-    // ============================================================
-    // LOAD PATIENTS FROM CSV (all 14 fields)
-    // ============================================================
     private void load() {
         try {
             for (String[] row : CsvUtils.readCsv(csvPath)) {
 
                 Patient p = new Patient(
-                        row[0],   // patient_id
-                        row[1],   // first_name
-                        row[2],   // last_name
-                        row[3],   // date_of_birth
-                        row[4],   // nhs_number
-                        row[5],   // gender
-                        row[6],   // phone_number
-                        row[7],   // email
-                        row[8],   // address
-                        row[9],   // postcode
-                        row[10],  // emergency_contact_name
-                        row[11],  // emergency_contact_phone
-                        row[12],  // registration_date
-                        row[13]   // gp_surgery_id
+                        row[0],   
+                        row[1],   
+                        row[2],   
+                        row[3],   
+                        row[4],   
+                        row[5],   
+                        row[6],   
+                        row[7],   
+                        row[8],   
+                        row[9],   
+                        row[10],  
+                        row[11],  
+                        row[12],  
+                        row[13]  
                 );
 
                 patients.add(p);
@@ -52,9 +49,6 @@ public class PatientRepository {
         }
     }
 
-    // ============================================================
-    // AUTO-ID GENERATOR  (Fills gaps: P001, P002, P003, ...)
-    // ============================================================
     public String generateNewId() {
         java.util.Set<Integer> existing = new java.util.HashSet<>();
         for (Patient p : patients) {
@@ -68,9 +62,6 @@ public class PatientRepository {
         return String.format("P%03d", next);
     }
 
-    // ============================================================
-    // ADD PATIENT + APPEND TO CSV
-    // ============================================================
     public void addAndAppend(Patient p) {
         patients.add(p);
 
@@ -114,9 +105,6 @@ public class PatientRepository {
         return null;
     }
 
-    // ============================================================
-    // SAVE ALL PATIENTS TO CSV
-    // ============================================================
     public void saveAll() {
         try (java.io.BufferedWriter bw = new java.io.BufferedWriter(new java.io.FileWriter(csvPath))) {
             bw.write("patient_id,first_name,last_name,date_of_birth,nhs_number,gender,phone_number,email,address,postcode,emergency_contact_name,emergency_contact_phone,registration_date,gp_surgery_id\n");

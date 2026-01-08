@@ -25,7 +25,7 @@ public class PatientListView extends JPanel {
         model = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Make table read-only
+                return false; 
             }
         };
 

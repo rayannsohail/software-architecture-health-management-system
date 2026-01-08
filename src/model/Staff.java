@@ -2,7 +2,7 @@ package model;
 
 public class Staff extends Person {
 
-    private String position;   // receptionist, admin, etc.
+    private String position;  
     private String facilityId;
 
     public Staff() { }

@@ -81,7 +81,6 @@ public class PrescriptionController {
         return ids;
     }
 
-    // ---------- CRUD called by view ----------
 
     public void addPrescription(Prescription p) {
         repository.addAndAppend(p);

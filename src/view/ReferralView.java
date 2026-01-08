@@ -33,7 +33,7 @@ public class ReferralView extends JPanel {
     private JComboBox<String> cbRefFacility, cbToFacility;
     private JComboBox<String> cbUrgency;
     private JComboBox<String> cbAppointmentId;
-    private JComboBox<String> cbStatus;     // NEW DROPDOWN
+    private JComboBox<String> cbStatus;     
 
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private final DateTimeFormatter localDateFormatter =
@@ -42,9 +42,7 @@ public class ReferralView extends JPanel {
     public ReferralView() {
         setLayout(new BorderLayout(10,10));
 
-        // ============================================================
-        // TABLE
-        // ============================================================
+
         model = new DefaultTableModel(
                 new Object[]{
                         "ID",
@@ -69,9 +67,7 @@ public class ReferralView extends JPanel {
         table = new JTable(model);
         table.setRowHeight(18);
 
-        // ============================================================
-        // FORM (4-COLUMN GRID)
-        // ============================================================
+
         JPanel formPanel = new JPanel();
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         formPanel.setLayout(new GridLayout(0, 4, 20, 10));
@@ -99,7 +95,7 @@ public class ReferralView extends JPanel {
         });
         cbUrgency.setFont(new Font("SansSerif", Font.PLAIN, 12));
 
-        // NEW STATUS DROPDOWN
+
         cbStatus = new JComboBox<>(new String[]{
                 "Pending",
                 "Sent",
@@ -117,9 +113,7 @@ public class ReferralView extends JPanel {
         txtClinicalSummary = createArea();
         txtNotes = createArea();
 
-        // ============================================================
-        // ADD ROWS
-        // ============================================================
+
         formPanel.add(labeled("Referral ID:", txtId));
         formPanel.add(labeled("Patient ID:", cbPatientId));
         formPanel.add(labeled("Referring Clinician ID:", cbRefClin));
@@ -132,7 +126,7 @@ public class ReferralView extends JPanel {
 
         formPanel.add(labeled("Referral Reason:", txtReason));
         formPanel.add(labeled("Requested Service:", txtRequestedService));
-        formPanel.add(labeled("Status:", cbStatus));                   // UPDATED
+        formPanel.add(labeled("Status:", cbStatus));                   
         formPanel.add(labeled("Appointment ID:", cbAppointmentId));
 
         formPanel.add(labeled("Clinical Summary:", new JScrollPane(txtClinicalSummary)));
@@ -140,9 +134,7 @@ public class ReferralView extends JPanel {
         formPanel.add(labeled("Created Date:", txtCreatedDate));
         formPanel.add(labeled("Last Updated:", txtLastUpdated));
 
-        // ============================================================
-        // BUTTON PANEL
-        // ============================================================
+      
         JButton btnAdd = new JButton("Create Referral");
         btnAdd.setPreferredSize(new Dimension(160, 30));
         btnAdd.addActionListener(e -> onAdd());
@@ -150,24 +142,20 @@ public class ReferralView extends JPanel {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         buttonPanel.add(btnAdd);
 
-        // ============================================================
-        // TOP PANEL (FORM + BUTTONS)
-        // ============================================================
+        
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(new JScrollPane(formPanel), BorderLayout.CENTER);
         topPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // ============================================================
-        // SPLIT PANE
-        // ============================================================
+        
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, new JScrollPane(table));
         splitPane.setDividerLocation(0.55);
-        splitPane.setResizeWeight(0.55); // Keeps 55% for top, 45% for bottom
+        splitPane.setResizeWeight(0.55); 
 
         add(splitPane, BorderLayout.CENTER);
     }
 
-    // ---------- Helper Creators ----------
+
     private JTextField createField() {
         JTextField f = new JTextField(12);
         f.setPreferredSize(new Dimension(140, 22));
@@ -208,9 +196,7 @@ public class ReferralView extends JPanel {
         return p;
     }
 
-    // ============================================================
-    // CONTROLLER LINKING
-    // ============================================================
+
     public void setController(ReferralController controller) {
         this.controller = controller;
         loadCombos();
@@ -260,9 +246,7 @@ public class ReferralView extends JPanel {
         txtLastUpdated.setText(today);
     }
 
-    // ============================================================
-    // DISPLAY REFERRALS
-    // ============================================================
+
     public void showReferrals(List<Referral> list) {
         model.setRowCount(0);
         for (Referral r : list) {
@@ -287,9 +271,7 @@ public class ReferralView extends JPanel {
         }
     }
 
-    // ============================================================
-    // ADD REFERRAL
-    // ============================================================
+
     private void onAdd() {
 
         String errors = validateForm();
@@ -311,7 +293,7 @@ public class ReferralView extends JPanel {
                 txtReason.getText().trim(),
                 txtClinicalSummary.getText().trim(),
                 txtRequestedService.getText().trim(),
-                (String) cbStatus.getSelectedItem(),         // UPDATED
+                (String) cbStatus.getSelectedItem(),         
                 (String) cbAppointmentId.getSelectedItem(),
                 txtNotes.getText().trim(),
                 txtCreatedDate.getText().trim(),

@@ -6,14 +6,12 @@ import view.*;
 import javax.swing.*;
 import java.awt.*;
 
-// Import FlatLaf
 import com.formdev.flatlaf.FlatLightLaf;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // ✅ Set modern FlatLaf theme
         try {
             FlatLightLaf.setup();
         } catch (Exception ex) {
@@ -26,9 +24,7 @@ public class Main {
             String dataPath = basePath + "/src/data/";
 
             try {
-                // ================================
-                // REPOSITORIES
-                // ================================
+
                 PatientRepository pr = new PatientRepository(dataPath + "patients.csv");
                 ClinicianRepository cr = new ClinicianRepository(dataPath + "clinicians.csv");
                 FacilityRepository fr = new FacilityRepository(dataPath + "facilities.csv");
@@ -36,17 +32,13 @@ public class Main {
                 PrescriptionRepository pResR = new PrescriptionRepository(dataPath + "prescriptions.csv");
                 ReferralRepository rR = new ReferralRepository(dataPath + "referrals.csv");
 
-                // ================================
-                // REFERRAL MANAGER
-                // ================================
+
                 ReferralManager rm = ReferralManager.getInstance(
                         rR, pr, cr, fr,
                         dataPath + "referrals_output.txt"
                 );
 
-                // ================================
-                // VIEWS
-                // ================================
+
                 PatientView pv = new PatientView();
                 PatientListView plv = new PatientListView();
                 ClinicianView cv = new ClinicianView();
@@ -54,9 +46,7 @@ public class Main {
                 PrescriptionView presV = new PrescriptionView();
                 ReferralView rv = new ReferralView();
 
-                // ================================
-                // CONTROLLERS
-                // ================================
+
                 PatientListController plc = new PatientListController(pr, plv);
                 PatientController pc = new PatientController(pr, pv, plc);
                 plc.setPatientController(pc);
@@ -65,14 +55,12 @@ public class Main {
                 PrescriptionController prc = new PrescriptionController(pResR, pr, cr, ar, presV);
                 ReferralController rc = new ReferralController(rm, pr, cr, fr, ar, rv);
 
-                // ================================
-                // MAIN FRAME
-                // ================================
+
                 MainFrame frame = new MainFrame(pc, plc, cc, ac, prc, rc);
-                frame.setSize(1000, 600); // Larger size for professional role selection screen
+                frame.setSize(1000, 600); 
                 frame.setLocationRelativeTo(null);
                 
-                // ✅ Modern UI tweaks with light green theme
+
                 UIManager.put("Button.arc", 20);
                 UIManager.put("Component.focusWidth", 2);
                 UIManager.put("Button.background", new Color(76, 175, 80)); // Light green

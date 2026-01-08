@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-// A helper class to create modern JTextFields and JTextAreas
+
 public class ModernTextField {
 
     public static JTextField createTextField(int columns) {
@@ -14,9 +14,9 @@ public class ModernTextField {
         field.setBackground(Color.WHITE);
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
-                new EmptyBorder(5, 10, 5, 10) // padding
+                new EmptyBorder(5, 10, 5, 10) 
         ));
-        field.setCaretColor(new Color(33, 150, 243)); // blue caret
+        field.setCaretColor(new Color(33, 150, 243)); 
         return field;
     }
 

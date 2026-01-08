@@ -24,8 +24,8 @@ public class PrescriptionView extends JPanel {
     private JComboBox<String> cbClinicianId;
     private JComboBox<String> cbDrug;
     private JComboBox<String> cbPharmacy;
-    private JComboBox<String> cbStatus;         // 🔥 STATUS DROPDOWN
-    private JComboBox<String> cbAppointmentId;  // 🔥 APPOINTMENT DROPDOWN
+    private JComboBox<String> cbStatus;         
+    private JComboBox<String> cbAppointmentId;  
 
     private JFormattedTextField txtPrescDate;
     private JTextField txtDosage;
@@ -45,9 +45,7 @@ public class PrescriptionView extends JPanel {
         setLayout(new BorderLayout(15, 15));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // ============================================================
-        // TABLE
-        // ============================================================
+
         model = new DefaultTableModel(
                 new Object[]{
                         "ID", "Patient", "Clinician", "Appt",
@@ -59,9 +57,7 @@ public class PrescriptionView extends JPanel {
         table = new JTable(model);
         table.setRowHeight(22);
 
-        // ============================================================
-        // FORM
-        // ============================================================
+ 
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(6, 8, 6, 8);
@@ -159,9 +155,7 @@ public class PrescriptionView extends JPanel {
         gc.gridwidth = 3;
         form.add(new JScrollPane(txtInstructions), gc);
 
-        // ============================================================
-        // BUTTONS
-        // ============================================================
+
         JButton btnAdd    = new JButton("Add");
         JButton btnUpdate = new JButton("Update Selected");
         JButton btnDelete = new JButton("Delete Selected");
@@ -175,19 +169,15 @@ public class PrescriptionView extends JPanel {
         btnPanel.add(btnUpdate);
         btnPanel.add(btnDelete);
 
-        // ============================================================
-        // TOP PANEL (FORM + BUTTONS)
-        // ============================================================
+
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(form, BorderLayout.CENTER);
         topPanel.add(btnPanel, BorderLayout.SOUTH);
 
-        // ============================================================
-        // SPLIT PANE
-        // ============================================================
+
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, new JScrollPane(table));
         splitPane.setDividerLocation(0.55);
-        splitPane.setResizeWeight(0.55); // Keeps 55% for top, 45% for bottom
+        splitPane.setResizeWeight(0.55); 
 
         setLayout(new BorderLayout());
         add(splitPane, BorderLayout.CENTER);
@@ -214,9 +204,7 @@ public class PrescriptionView extends JPanel {
         panel.add(field2, gc);
     }
 
-    // ============================================================
-    // Controller Hooks
-    // ============================================================
+
     public void setController(PrescriptionController controller) {
         this.controller = controller;
     }
@@ -270,9 +258,7 @@ public class PrescriptionView extends JPanel {
         }
     }
 
-    // ============================================================
-    // ADD
-    // ============================================================
+
     private void onAdd() {
         if (controller == null) return;
 
@@ -288,9 +274,7 @@ public class PrescriptionView extends JPanel {
         clearFormButKeepIds();
     }
 
-    // ============================================================
-    // UPDATE
-    // ============================================================
+
     private void onUpdate() {
         if (controller == null) return;
 
@@ -312,9 +296,7 @@ public class PrescriptionView extends JPanel {
         controller.updatePrescription(p);
     }
 
-    // ============================================================
-    // DELETE
-    // ============================================================
+
     private void onDelete() {
         if (controller == null) return;
 
@@ -328,15 +310,13 @@ public class PrescriptionView extends JPanel {
         controller.deleteById(id);
     }
 
-    // ============================================================
-    // Build Model from Form
-    // ============================================================
+
     private Prescription buildFromForm(String id) {
         return new Prescription(
                 id,
                 (String) cbPatientId.getSelectedItem(),
                 (String) cbClinicianId.getSelectedItem(),
-                (String) cbAppointmentId.getSelectedItem(),   // 🔥 from dropdown
+                (String) cbAppointmentId.getSelectedItem(), 
                 txtPrescDate.getText().trim(),
                 (String) cbDrug.getSelectedItem(),
                 txtDosage.getText().trim(),
@@ -351,9 +331,7 @@ public class PrescriptionView extends JPanel {
         );
     }
 
-    // ============================================================
-    // Load selected table row → form
-    // ============================================================
+
     private void loadSelectedRowIntoForm() {
         int row = table.getSelectedRow();
         if (row < 0) return;
@@ -381,9 +359,7 @@ public class PrescriptionView extends JPanel {
         return v == null ? "" : v.toString();
     }
 
-    // ============================================================
-    // VALIDATION
-    // ============================================================
+
     private String validateForm() {
         StringBuilder sb = new StringBuilder();
 
@@ -438,10 +414,10 @@ public class PrescriptionView extends JPanel {
         txtFrequency.setText("");
         txtDuration.setText("");
         txtQuantity.setText("");
-        cbStatus.setSelectedIndex(0);   // reset
+        cbStatus.setSelectedIndex(0);   
         txtIssueDate.setText("");
         txtCollectionDate.setText("");
         txtInstructions.setText("");
-        // keep dropdown selections and ID
+
     }
 }

@@ -17,35 +17,22 @@ public class AppointmentRepository {
     private void load() {
         try {
             for (String[] row : CsvUtils.readCsv(csvPath)) {
-                // CSV columns (14):
-                // 0: appointment_id
-                // 1: patient_id
-                // 2: clinician_id
-                // 3: facility_id
-                // 4: appointment_date
-                // 5: appointment_time
-                // 6: duration_minutes
-                // 7: appointment_type
-                // 8: status
-                // 9: reason_for_visit
-                //10: notes
-                //11: created_date
-                //12: last_modified
+
 
                 Appointment a = new Appointment(
-                        row[0],  // id
-                        row[1],  // patient_id
-                        row[2],  // clinician_id
-                        row[3],  // facility_id
-                        row[4],  // appointment_date
-                        row[5],  // appointment_time
-                        row[6],  // duration_minutes
-                        row[7],  // appointment_type
-                        row[8],  // status
-                        row[9],  // reason_for_visit
-                        row[10], // notes
-                        row[11], // created_date
-                        row[12]  // last_modified
+                        row[0],  
+                        row[1],  
+                        row[2],  
+                        row[3],  
+                        row[4],  
+                        row[5],  
+                        row[6],  
+                        row[7],  
+                        row[8],  
+                        row[9],  
+                        row[10], 
+                        row[11], 
+                        row[12]  
                 );
 
                 appointments.add(a);
@@ -64,7 +51,7 @@ public class AppointmentRepository {
         int max = 0;
         for (Appointment a : appointments) {
             try {
-                int n = Integer.parseInt(a.getId().substring(1)); // "A001" → 1
+                int n = Integer.parseInt(a.getId().substring(1)); 
                 if (n > max) max = n;
             } catch (Exception ignore) {}
         }

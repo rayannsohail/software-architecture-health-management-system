@@ -29,7 +29,6 @@ public class ReferralManager {
     }
 
 
-    // Singleton access
     public static synchronized ReferralManager getInstance(
             ReferralRepository rr,
             PatientRepository pr,
@@ -54,10 +53,6 @@ public class ReferralManager {
     }
 
 
-    /**
-     * Writes a nicely formatted referral text file showing full details.
-     * This is what gets you marks under “output text file of referral content”.
-     */
     private void writeReferralText(Referral r) {
 
         Patient patient = patientRepository.findById(r.getPatientId());
@@ -116,7 +111,6 @@ if (referredToClinician != null) {
                 bw.newLine();
             }
 
-            // Dates, urgency, reason
             bw.write("Referral Date: " + r.getReferralDate());
             bw.newLine();
 
@@ -132,13 +126,11 @@ if (referredToClinician != null) {
             bw.write("Status: " + r.getStatus());
             bw.newLine();
 
-            // Clinical Summary
             bw.write("Clinical Summary:");
             bw.newLine();
             bw.write(r.getClinicalSummary());
             bw.newLine();
 
-            // Notes
             bw.write("Notes:");
             bw.newLine();
             bw.write(r.getNotes());

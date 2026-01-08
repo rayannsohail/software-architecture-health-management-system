@@ -30,9 +30,7 @@ public class ClinicianView extends JPanel {
 
     public ClinicianView() {
 
-        // ============================================================
-        // FORM PANEL (4 COLUMNS)
-        // ============================================================
+
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(10, 15, 10, 15);
@@ -93,7 +91,7 @@ public class ClinicianView extends JPanel {
 
         int row = 0;
 
-        // ============================  4 COLUMNS  ============================
+
         add4(form, gc, row++, "Clinician ID:", lblId,    "Title:", cmbTitle);
         add4(form, gc, row++, "First Name:", txtFirstName, "Last Name:", txtLastName);
         add4(form, gc, row++, "Speciality:", txtSpeciality, "GMC Number:", txtGmc);
@@ -101,9 +99,7 @@ public class ClinicianView extends JPanel {
         add4(form, gc, row++, "Workplace ID:", txtWorkplaceId, "Workplace Type:", cmbWorkplaceType);
         add4(form, gc, row++, "Employment:", cmbEmployment, "Start Date:", dateField);
 
-        // ============================================================
-        // BUTTON PANEL
-        // ============================================================
+
         JButton btnAdd = new JButton("Add Clinician");
         JButton btnDelete = new JButton("Delete Selected");
 
@@ -114,16 +110,12 @@ public class ClinicianView extends JPanel {
         buttons.add(btnAdd);
         buttons.add(btnDelete);
 
-        // ============================================================
-        // TOP PANEL (FORM + BUTTONS)
-        // ============================================================
+
         JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(form, BorderLayout.CENTER);
         topPanel.add(buttons, BorderLayout.SOUTH);
 
-        // ============================================================
-        // TABLE
-        // ============================================================
+
         model = new DefaultTableModel(
                 new Object[]{
                         "ID","Title","First","Last","Speciality","GMC",
@@ -136,55 +128,49 @@ public class ClinicianView extends JPanel {
         table.setRowHeight(22);
         JScrollPane tableScroll = new JScrollPane(table);
 
-        // ============================================================
-        // SPLIT PANE
-        // ============================================================
+
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, tableScroll);
         splitPane.setDividerLocation(0.55);
-        splitPane.setResizeWeight(0.55); // Keeps 55% for top, 45% for bottom
+        splitPane.setResizeWeight(0.55); 
 
         setLayout(new BorderLayout());
         add(splitPane, BorderLayout.CENTER);
     }
 
-    // Helper for 4-column rows
+
     private void add4(JPanel panel, GridBagConstraints gc, int row,
                       String label1, JComponent field1,
                       String label2, JComponent field2) {
 
         gc.gridy = row;
 
-        // Left label
+
         gc.gridx = 0;
         gc.weightx = 0.15;
         panel.add(new JLabel(label1), gc);
 
-        // Left field
+
         gc.gridx = 1;
         gc.weightx = 0.35;
         panel.add(field1, gc);
 
-        // Right label
+
         gc.gridx = 2;
         gc.weightx = 0.15;
         panel.add(new JLabel(label2), gc);
 
-        // Right field
+
         gc.gridx = 3;
         gc.weightx = 0.35;
         panel.add(field2, gc);
     }
 
-    // ============================================================
-    // CONTROLLER LINK
-    // ============================================================
+
     public void setController(ClinicianController controller) {
         this.controller = controller;
     }
 
-    // ============================================================
-    // DISPLAY DATA
-    // ============================================================
+
     public void showClinicians(List<Clinician> list) {
         model.setRowCount(0);
 
@@ -201,9 +187,7 @@ public class ClinicianView extends JPanel {
             lblId.setText(controller.generateId());
     }
 
-    // ============================================================
-    // ADD NEW CLINICIAN
-    // ============================================================
+
     private void onAdd() {
 
         if (controller == null) return;
@@ -226,9 +210,7 @@ public class ClinicianView extends JPanel {
         controller.addClinician(c);
     }
 
-    // ============================================================
-    // DELETE CLINICIAN
-    // ============================================================
+
     private void onDelete() {
         if (controller == null) return;
 

@@ -35,9 +35,7 @@ public class ReferralController {
         refreshReferrals();
     }
 
-    // ---------------------------------------------
-    // VIEW HOOKS
-    // ---------------------------------------------
+
     public ReferralView getView() {
         return view;
     }
@@ -46,9 +44,7 @@ public class ReferralController {
         view.showReferrals(referralManager.getAllReferrals());
     }
 
-    // ---------------------------------------------
-    // COMBOBOX DATA
-    // ---------------------------------------------
+
     public List<String> getPatientIds() {
         List<String> ids = new ArrayList<>();
         for (Patient p : patientRepo.getAll()) {
@@ -81,9 +77,7 @@ public class ReferralController {
         return ids;
     }
 
-    // ---------------------------------------------
-    // AUTO ID GENERATOR
-    // ---------------------------------------------
+
     public String getNextReferralId() {
 
         int max = 0;
@@ -102,11 +96,9 @@ public class ReferralController {
         return String.format("R%03d", next);
     }
 
-    // ---------------------------------------------
-    // ADD REFERRAL
-    // ---------------------------------------------
+
     public void addReferral(Referral r) {
-        referralManager.createReferral(r);   // Saves CSV + writes text file
+        referralManager.createReferral(r); 
         refreshReferrals();
     }
 }

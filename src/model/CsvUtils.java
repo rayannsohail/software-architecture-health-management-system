@@ -18,10 +18,9 @@ public class CsvUtils {
 
             if (!headerSkipped) { headerSkipped = true; continue; }
 
-            // Split on commas that are NOT inside quotes
+
             String[] values = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
 
-            // Remove surrounding quotes (optional)
             for (int i = 0; i < values.length; i++) {
                 values[i] = values[i].replaceAll("^\"|\"$", "").trim();
             }

@@ -24,18 +24,18 @@ public class ClinicianRepository {
         try {
             for (String[] row : CsvUtils.readCsv(csvPath)) {
                 Clinician c = new Clinician(
-                        row[0],   // id
-                        row[1],   // title
-                        row[2],   // first
-                        row[3],   // last
-                        row[4],   // speciality
-                        row[5],   // gmc
-                        row[6],   // phone
-                        row[7],   // email
-                        row[8],   // workplace id
-                        row[9],   // workplace type
-                        row[10],  // employment
-                        row[11]   // start date
+                        row[0],   
+                        row[1],   
+                        row[2],   
+                        row[3],   
+                        row[4],   
+                        row[5],   
+                        row[6],   
+                        row[7],   
+                        row[8],   
+                        row[9],   
+                        row[10],  
+                        row[11]   
                 );
                 clinicians.add(c);
             }
@@ -44,9 +44,6 @@ public class ClinicianRepository {
         }
     }
 
-    // ============================================================
-    // AUTO-ID: C001 → C002 → C003...
-    // ============================================================
     public String generateNewId() {
         int max = 0;
         for (Clinician c : clinicians) {
@@ -58,9 +55,6 @@ public class ClinicianRepository {
         return String.format("C%03d", max + 1);
     }
 
-    // ============================================================
-    // ADD + APPEND TO CSV
-    // ============================================================
     public void addAndAppend(Clinician c) {
         clinicians.add(c);
         try {
@@ -79,9 +73,7 @@ public class ClinicianRepository {
         return clinicians;
     }
 
-    // ============================================================
-    // REMOVE
-    // ============================================================
+
     public void remove(Clinician c) {
         clinicians.remove(c);
     }

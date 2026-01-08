@@ -27,7 +27,7 @@ public class AppointmentView extends JPanel {
     private JTextField txtReason;
     private JFormattedTextField txtTime, txtDuration, txtDate, txtCreatedDate, txtLastModified;
 
-    private JComboBox<String> cbStatus;          // 🔥 STATUS DROPDOWN
+    private JComboBox<String> cbStatus;      
     private JComboBox<String> cbPatientId;
     private JComboBox<String> cbClinicianId;
     private JComboBox<String> cbFacilityId;
@@ -47,9 +47,7 @@ public class AppointmentView extends JPanel {
     public AppointmentView() {
         setLayout(new BorderLayout(10, 10));
 
-        // ============================================================
-        // TABLE
-        // ============================================================
+
         model = new DefaultTableModel(
                 new Object[]{
                         "ID", "Patient", "Clinician", "Facility",
@@ -62,9 +60,7 @@ public class AppointmentView extends JPanel {
         table.setRowHeight(22);
 
 
-        // ============================================================
-        // FORM
-        // ============================================================
+
         form = new JPanel(new GridBagLayout());
         form.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         GridBagConstraints gc = new GridBagConstraints();
@@ -118,7 +114,6 @@ public class AppointmentView extends JPanel {
         txtType = new JTextField();
         txtReason = new JTextField();
 
-        // 🔥 STATUS DROPDOWN ADDED
         cbStatus = new JComboBox<>(new String[]{
                 "SCHEDULED",
                 "RESCHEDULED",
@@ -160,7 +155,6 @@ public class AppointmentView extends JPanel {
         addFieldPair(form, gc, row++, "Appointment Date:", txtDate, "Time (HH:mm):", txtTime);
         addFieldPair(form, gc, row++, "Duration (min):", txtDuration, "Appointment Type:", txtType);
 
-        // 🔥 Status dropdown included here
         addFieldPair(form, gc, row++, "Status:", cbStatus, "Reason for Visit:", txtReason);
 
         addFieldPair(form, gc, row++, "Created Date:", txtCreatedDate, "Last Modified:", txtLastModified);
@@ -174,9 +168,7 @@ public class AppointmentView extends JPanel {
 
         add(form, BorderLayout.CENTER);
 
-        // ============================================================
-        // BUTTONS
-        // ============================================================
+
         btnAdd = new JButton("Add Appointment");
         btnDelete = new JButton("Delete Selected");
 
@@ -187,19 +179,14 @@ public class AppointmentView extends JPanel {
         buttons.add(btnAdd);
         buttons.add(btnDelete);
 
-        // ============================================================
-        // TOP PANEL (FORM + BUTTONS)
-        // ============================================================
+
         topPanel = new JPanel(new BorderLayout());
         topPanel.add(form, BorderLayout.CENTER);
         topPanel.add(buttons, BorderLayout.SOUTH);
 
-        // ============================================================
-        // SPLIT PANE
-        // ============================================================
         splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, new JScrollPane(table));
         splitPane.setDividerLocation(0.55);
-        splitPane.setResizeWeight(0.55); // Keeps 55% for top, 45% for bottom
+        splitPane.setResizeWeight(0.55); 
 
         setLayout(new BorderLayout());
         add(splitPane, BorderLayout.CENTER);
@@ -227,9 +214,7 @@ public class AppointmentView extends JPanel {
     }
 
 
-    // ============================================================
-    // Dropdown loading
-    // ============================================================
+
     public void loadDropdowns(List<String> patients, List<String> clinicians, List<String> facilities) {
         cbPatientId.removeAllItems();
         cbClinicianId.removeAllItems();
@@ -245,9 +230,7 @@ public class AppointmentView extends JPanel {
     }
 
 
-    // ============================================================
-    // TABLE VIEW UPDATE
-    // ============================================================
+
     public void showAppointments(List<Appointment> list) {
         model.setRowCount(0);
 
@@ -271,9 +254,7 @@ public class AppointmentView extends JPanel {
     }
 
 
-    // ============================================================
-    // ADD APPOINTMENT
-    // ============================================================
+
     private void addAppointment() {
 
         Appointment a = new Appointment(
@@ -285,7 +266,7 @@ public class AppointmentView extends JPanel {
                 txtTime.getText(),
                 txtDuration.getText(),
                 txtType.getText(),
-                (String) cbStatus.getSelectedItem(),   // 🔥 STATUS DROPDOWN USED
+                (String) cbStatus.getSelectedItem(),   
                 txtReason.getText(),
                 txtNotes.getText(),
                 txtCreatedDate.getText(),
@@ -300,9 +281,7 @@ public class AppointmentView extends JPanel {
     }
 
 
-    // ============================================================
-    // DELETE
-    // ============================================================
+
     private void deleteAppointment() {
         int row = table.getSelectedRow();
         if (row < 0) {
@@ -318,9 +297,7 @@ public class AppointmentView extends JPanel {
         this.controller = controller;
     }
 
-    // ============================================================
-    // SET MODE
-    // ============================================================
+
     public void setMode(String mode) {
         if ("patient".equals(mode)) {
             // Hide table and delete button
@@ -330,13 +307,13 @@ public class AppointmentView extends JPanel {
             // Hide form and add button, show table and delete
             topPanel.remove(form);
             buttons.remove(btnAdd);
-            splitPane.setTopComponent(buttons); // only buttons with delete
+            splitPane.setTopComponent(buttons);
             splitPane.setBottomComponent(new JScrollPane(table));
             if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete)) {
                 buttons.add(btnDelete);
             }
         } else {
-            // Admin or default: show all
+
             topPanel.add(form, BorderLayout.CENTER);
             if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnAdd)) {
                 buttons.add(btnAdd);

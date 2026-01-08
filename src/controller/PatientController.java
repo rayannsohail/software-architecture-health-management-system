@@ -23,9 +23,7 @@ public class PatientController {
         return view;
     }
 
-    // ============================
-    // ADD PATIENT
-    // ============================
+
     public void addPatient(Patient p) {
         repository.addAndAppend(p);
         if (listController != null) {
@@ -35,9 +33,7 @@ public class PatientController {
         view.updateGpIdLabel(repository.generateNewId());
     }
 
-    // ============================
-    // UPDATE PATIENT
-    // ============================
+
     public void updatePatient(Patient p) {
         repository.saveAll();
         if (listController != null) {
@@ -45,23 +41,17 @@ public class PatientController {
         }
     }
 
-    // ============================
-    // EDIT PATIENT
-    // ============================
+
     public void editPatient(Patient p) {
         view.editPatient(p);
     }
 
-    // ============================
-    // GENERATE NEW ID
-    // ============================
+
     public String generateNewId() {
         return repository.generateNewId();
     }
 
-    // ============================
-    // GENERATE GP SURGERY ID
-    // ============================
+
     public String generateGpId() {
         java.util.Set<Integer> existing = new java.util.HashSet<>();
         for (Patient p : repository.getAll()) {
