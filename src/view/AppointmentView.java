@@ -39,6 +39,8 @@ public class AppointmentView extends JPanel {
 
     private JPanel buttons;
     private JSplitPane splitPane;
+    private JPanel topPanel;
+    private JPanel form;
 
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -63,7 +65,7 @@ public class AppointmentView extends JPanel {
         // ============================================================
         // FORM
         // ============================================================
-        JPanel form = new JPanel(new GridBagLayout());
+        form = new JPanel(new GridBagLayout());
         form.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         GridBagConstraints gc = new GridBagConstraints();
         gc.insets = new Insets(6, 6, 6, 6);
@@ -188,7 +190,7 @@ public class AppointmentView extends JPanel {
         // ============================================================
         // TOP PANEL (FORM + BUTTONS)
         // ============================================================
-        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel = new JPanel(new BorderLayout());
         topPanel.add(form, BorderLayout.CENTER);
         topPanel.add(buttons, BorderLayout.SOUTH);
 
@@ -317,23 +319,38 @@ public class AppointmentView extends JPanel {
     }
 
     // ============================================================
-    // SET PATIENT MODE
+    // SET MODE
     // ============================================================
-    public void setPatientMode(boolean isPatient) {
-        if (isPatient) {
+    public void setMode(String mode) {
+        if ("patient".equals(mode)) {
             // Hide table and delete button
             splitPane.setBottomComponent(null);
             buttons.remove(btnDelete);
-        } else {
-            // Show table and delete button
+        } else if ("clinician".equals(mode)) {
+            // Hide form and add button, show table and delete
+            topPanel.remove(form);
+            buttons.remove(btnAdd);
+            splitPane.setTopComponent(buttons); // only buttons with delete
             splitPane.setBottomComponent(new JScrollPane(table));
-            java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete);
             if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete)) {
                 buttons.add(btnDelete);
             }
+        } else {
+            // Admin or default: show all
+            topPanel.add(form, BorderLayout.CENTER);
+            if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnAdd)) {
+                buttons.add(btnAdd);
+            }
+            if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete)) {
+                buttons.add(btnDelete);
+            }
+            splitPane.setTopComponent(topPanel);
+            splitPane.setBottomComponent(new JScrollPane(table));
         }
         buttons.revalidate();
         buttons.repaint();
+        topPanel.revalidate();
+        topPanel.repaint();
         revalidate();
         repaint();
     }

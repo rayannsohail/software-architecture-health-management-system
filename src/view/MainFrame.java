@@ -159,14 +159,14 @@ public class MainFrame extends JFrame {
             case PATIENT:
                 // Patient: Patients page and Appointments page
                 tabs.addTab("Patients", pc.getView());
-                ac.getView().setPatientMode(true);
+                ac.getView().setMode("patient");
                 tabs.addTab("Appointments", ac.getView());
                 break;
 
             case CLINICIAN:
                 // Clinician: All Patients page, Appointments page, Referrals page, and Prescriptions page
                 tabs.addTab("All Patients", plc.getView());
-                ac.getView().setPatientMode(false);
+                ac.getView().setMode("clinician");
                 tabs.addTab("Appointments", ac.getView());
                 tabs.addTab("Referrals", rc.getView());
                 tabs.addTab("Prescriptions", prc.getView());
@@ -175,7 +175,7 @@ public class MainFrame extends JFrame {
             case ADMINISTRATOR:
                 // Administrator: Clinicians page, Appointments page, and Referrals page
                 tabs.addTab("Clinicians", cc.getView());
-                ac.getView().setPatientMode(false);
+                ac.getView().setMode("admin");
                 tabs.addTab("Appointments", ac.getView());
                 tabs.addTab("Referrals", rc.getView());
                 break;
