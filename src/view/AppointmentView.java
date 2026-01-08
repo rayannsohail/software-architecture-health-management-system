@@ -34,6 +34,12 @@ public class AppointmentView extends JPanel {
 
     private JTextArea txtNotes;
 
+    private JButton btnAdd;
+    private JButton btnDelete;
+
+    private JPanel buttons;
+    private JSplitPane splitPane;
+
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public AppointmentView() {
@@ -166,17 +172,16 @@ public class AppointmentView extends JPanel {
 
         add(form, BorderLayout.CENTER);
 
-
         // ============================================================
         // BUTTONS
         // ============================================================
-        JButton btnAdd = new JButton("Add Appointment");
-        JButton btnDelete = new JButton("Delete Selected");
+        btnAdd = new JButton("Add Appointment");
+        btnDelete = new JButton("Delete Selected");
 
         btnAdd.addActionListener(e -> addAppointment());
         btnDelete.addActionListener(e -> deleteAppointment());
 
-        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         buttons.add(btnAdd);
         buttons.add(btnDelete);
 
@@ -190,7 +195,7 @@ public class AppointmentView extends JPanel {
         // ============================================================
         // SPLIT PANE
         // ============================================================
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, new JScrollPane(table));
+        splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, topPanel, new JScrollPane(table));
         splitPane.setDividerLocation(0.55);
         splitPane.setResizeWeight(0.55); // Keeps 55% for top, 45% for bottom
 
@@ -309,5 +314,27 @@ public class AppointmentView extends JPanel {
 
     public void setController(AppointmentController controller) {
         this.controller = controller;
+    }
+
+    // ============================================================
+    // SET PATIENT MODE
+    // ============================================================
+    public void setPatientMode(boolean isPatient) {
+        if (isPatient) {
+            // Hide table and delete button
+            splitPane.setBottomComponent(null);
+            buttons.remove(btnDelete);
+        } else {
+            // Show table and delete button
+            splitPane.setBottomComponent(new JScrollPane(table));
+            java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete);
+            if (!java.util.Arrays.asList(buttons.getComponents()).contains(btnDelete)) {
+                buttons.add(btnDelete);
+            }
+        }
+        buttons.revalidate();
+        buttons.repaint();
+        revalidate();
+        repaint();
     }
 }
